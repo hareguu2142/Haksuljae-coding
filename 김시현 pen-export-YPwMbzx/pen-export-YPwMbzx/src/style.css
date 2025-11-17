@@ -1,0 +1,176 @@
+body {
+    /* 기본 폰트 설정 (Noto Serif KR) */
+    font-family: 'Noto Serif KR', serif, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f7f7f7;
+    padding: 20px;
+}
+
+.quote-container {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    color: #333333;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: #f0f0f0; /* 기본 배경색 */
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+.date-info {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 0.9em;
+    font-weight: 500;
+    z-index: 2;
+    opacity: 0.8;
+}
+
+.quote-text {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin: 10px 0;
+    line-height: 1.4;
+    z-index: 2;
+}
+
+.quote-source {
+    font-size: 1em;
+    margin-top: 15px;
+    font-style: italic;
+    font-weight: 300;
+    z-index: 2;
+}
+
+/* 컨트롤 패널 스타일 */
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 20px;
+    width: 350px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.controls label, .controls button, .controls input[type="file"], .controls select {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.controls button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5cb85c;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.controls button:hover {
+    background-color: #4cae4c;
+}
+
+#removeImageBtn {
+    background-color: #f0ad4e;
+}
+#removeImageBtn:hover {
+    background-color: #ec971f;
+}
+
+/* 폰트 선택 드롭다운 스타일 */
+.controls select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: white;
+}
+
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+    position: relative;
+    text-align: center;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+.submit-btn {
+    margin-top: 15px;
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+}
+.submit-btn:hover {
+    background-color: #0056b3;
+}

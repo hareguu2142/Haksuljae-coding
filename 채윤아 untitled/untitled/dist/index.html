@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>넷플릭스 스타일 한국 드라마</title>
+<style>
+  body {
+    margin: 0; padding: 0; background-color: #000; color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  header {
+    background-color: #000;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+  }
+  header h1 {
+    color: #E50914;
+    font-size: 2.5rem;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 4px;
+  }
+  header .desc {
+    color: #bbb;
+    font-size: 1.1rem;
+    margin-left: 20px;
+  }
+
+  #container {
+    display: flex;
+    height: calc(100vh - 60px);
+  }
+
+  #genre-menu {
+    background-color: #111;
+    width: 180px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-right: 1px solid #222;
+  }
+  #genre-menu button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px 5px;
+    background: none;
+    border: none;
+    color: #bbb;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 3px;
+    text-align: left;
+    transition: background-color 0.3s;
+  }
+  #genre-menu button.active,
+  #genre-menu button:hover {
+    background-color: #E50914;
+    color: #fff;
+  }
+
+  #drama-list {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+    gap: 15px;
+  }
+
+  .card {
+    background-color: #222;
+    padding: 25px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+    user-select: none;
+  }
+  .card:hover, .card:focus {
+    background-color: #E50914;
+    color: white;
+    outline: none;
+  }
+
+  #drama-detail {
+    width: 350px;
+    background-color: #111;
+    padding: 20px;
+    box-sizing: border-box;
+    border-left: 1px solid #222;
+    overflow-y: auto;
+  }
+  #drama-detail h2 {
+    color: #E50914;
+    margin-top: 0;
+    font-size: 1.8rem;
+  }
+  #drama-detail p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #ddd;
+  }
+
+  @media (max-width: 900px) {
+    #container {
+      flex-direction: column;
+      height: auto;
+    }
+    #genre-menu {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid #222;
+      display: flex;
+      overflow-x: auto;
+    }
+    #genre-menu button {
+      flex: none;
+      margin-right: 10px;
+      margin-bottom: 0;
+      text-align: center;
+    }
+    #drama-list {
+      grid-template-columns: repeat(auto-fill,minmax(120px,1fr));
+      padding: 10px;
+    }
+    #drama-detail {
+      width: 100%;
+      border-left: none;
+      border-top: 1px solid #222;
+      padding: 15px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>NETFLIX</h1>
+  <div class="desc">한국 드라마 장르별 소개</div>
+</header>
+
+<div id="container">
+  <nav id="genre-menu">
+    <!-- 장르 버튼 자동 생성 -->
+  </nav>
+  <main id="drama-list">
+    <!-- 드라마 제목 카드들 -->
+  </main>
+  <aside id="drama-detail">
+    <h2>드라마 제목</h2>
+    <p>장르를 선택하고 드라마를 클릭하면 상세 내용이 여기에 표시됩니다.</p>
+  </aside>
+</div>
+<script>
+  const dramas = [
+    { 
+      title: "지금 거신 전화는", 
+      genre: "스릴러", 
+      desc: "미스테리한 전화와 연결된 사건들을 풀어가는 서스펜스 스릴러입니다.",
+      img: "https://i.postimg.cc/7Zj5cBNn/jigeumgeosin.jpg"
+    },
+    { 
+      title: "오징어 게임", 
+      genre: "스릴러", 
+      desc: "경제적으로 어려운 사람들이 목숨을 건 서바이벌 게임에 참가하면서 벌어지는 충격적인 스릴러입니다.",
+      img: "https://i.postimg.cc/FRps9G00/ojingeo.jpg"
+    },
+    { 
+      title: "펜트하우스", 
+      genre: "스릴러", 
+      desc: "부유층의 욕망과 복수를 다룬 치정 스릴러 드라마로, 극적인 반전과 긴장감이 넘칩니다.",
+      img: "https://i.postimg.cc/h4wRVH4S/pen.jpg"
+    },
+    { 
+      title: "스카이 캐슬", 
+      genre: "스릴러", 
+      desc: "교육열에 집착하는 상류층 가족들의 욕망과 비밀을 다룬 사회 드라마입니다.",
+      img: "https://i.postimg.cc/6pKWGDzc/seukai.jpg"
+    },
+    { 
+      title: "구미호뎐", 
+      genre: "판타지", 
+      desc: "구미호와 인간의 운명적인 사랑과 복수를 그린 판타지 드라마입니다.",
+      img: "https://i.postimg.cc/85Scw2P6/OIP-5.webp"
+    },
+    { 
+      title: "달의 연인", 
+      genre: "판타지", 
+      desc: "고려시대를 배경으로 한 타임슬립 로맨스 판타지 드라마로, 사랑과 권력, 운명을 다룹니다.",
+      img: "https://i.postimg.cc/X73mK4SN/dalui.jpg"
+    },
+    { 
+      title: "환혼", 
+      genre: "판타지", 
+      desc: "운명을 거스르는 남녀의 사랑과 음모, 그리고 신비로운 힘을 그린 퓨전 판타지 사극 드라마입니다.",
+      img: "https://i.postimg.cc/sxJnHGFk/ghsk.jpg"
+    },
+    { 
+      title: "도깨비", 
+      genre: "판타지", 
+      desc: "불멸의 존재 도깨비와 그의 신부가 펼치는 아름답고 신비로운 사랑 이야기입니다.",
+      img: "https://i.postimg.cc/mDf8byBK/do.webp"
+    },
+    { 
+      title: "호텔 델루나", 
+      genre: "판타지", 
+      desc: "저승과 이승의 경계에 있는 호텔을 배경으로 한 판타지 멜로 드라마입니다.",
+      img: "https://i.postimg.cc/jddvd5YQ/ho.png"
+    },
+    { 
+      title: "킹더랜드", 
+      genre: "판타지", 
+      desc: "재벌과 그 주변 인물들의 이야기를 판타지적 요소와 함께 그린 드라마입니다.",
+      img: "https://i.postimg.cc/QxtkZyc1/king.jpg"
+    },
+    { 
+      title: "폭군의 셰프", 
+      genre: "판타지", 
+      desc: "과거로 돌아간 셰프가 왕과 함께 음식을 통해 권력과 사랑을 쟁취하는 판타지 사극 드라마입니다.",
+      img: "https://i.postimg.cc/GtpYr4Tv/pog.webp"
+    },
+
+    { 
+      title: "지금 우리 학교는", 
+      genre: "가족", 
+      desc: "좀비 바이러스가 퍼진 학교에서 학생들이 생존을 위해 싸우는 스릴러 드라마입니다.",
+      img: "https://i.postimg.cc/ncjjkbv2/ji.jpg"
+    },
+    { 
+      title: "응답하라 1988", 
+      genre: "가족", 
+      desc: "1988년 서울 쌍문동을 배경으로 한 가족과 이웃 간의 따뜻한 이야기입니다.",
+      img: "https://i.postimg.cc/SxbsfXQG/eungpal.jpg"
+    },
+    { 
+      title: "백번의 추억", 
+      genre: "가족", 
+      desc: "가족의 소중함과 아픔, 그리고 회복을 그린 따뜻한 휴먼 드라마입니다.",
+      img: "https://i.postimg.cc/rydxhrTC/baedbeon.jpg"
+    },
+
+    { 
+      title: "경이로운 소문", 
+      genre: "액션", 
+      desc: "악귀를 퇴치하는 소문 사단의 이야기를 그린 액션 히어로 드라마입니다.",
+      img: "https://i.postimg.cc/1tbnxvSd/gyeong.webp"
+    },
+    { 
+      title: "힘쎈여자 도봉순", 
+      genre: "로맨스", 
+      desc: "힘이 센 여자 도봉순과 평범한 남자의 사랑 이야기를 그린 로맨틱 코미디입니다.",
+      img: "https://i.postimg.cc/9fMrr6Q2/him.jpg"
+    },
+    { 
+      title: "스물다섯 스물하나", 
+      genre: "로맨스", 
+      desc: "90년대 청춘들의 사랑과 성장, 우정을 그린 감성 멜로 드라마입니다.",
+      img: "https://i.postimg.cc/3JFR98kS/2025.jpg"
+    },
+    { 
+      title: "엄마 친구 아들", 
+      genre: "로맨스", 
+      desc: "엄마 친구 아들과 펼쳐지는 로맨틱한 이야기입니다.",
+      img: "https://i.postimg.cc/xCmjmnr7/eom.webp"
+    },
+    { 
+      title: "이태원 클라쓰", 
+      genre: "로맨스", 
+      desc: "이태원에서 자신의 꿈을 이루기 위해 도전하는 청년들의 이야기입니다.",
+      img: "https://i.postimg.cc/NG1ffskT/itaewon.jpg"
+    },
+ 
+    { 
+      title: "낭만닥터 김사부", 
+      genre: "의학", 
+      desc: "실력과 인간미 넘치는 외과 의사의 이야기를 그린 의료 드라마입니다.",
+      img: "https://i.postimg.cc/7hD4Tznb/skd.webp"
+    },
+    { 
+      title: "슬기로운 의사생활", 
+      genre: "의학", 
+      desc: "5명의 의사가 펼치는 일상과 우정을 그린 휴먼 드라마입니다.",
+      img: "https://i.postimg.cc/Vk58MmnN/seul.png"
+    },
+    { 
+      title: "스타트업", 
+      genre: "로맨스", 
+      desc: "스타트업 기업을 꿈꾸는 청춘들의 성장 스토리입니다.",
+      img: "https://i.postimg.cc/ZRzt1Ngs/seutateu.jpg"
+    },
+    { 
+      title: "그해 우리는", 
+      genre: "로맨스", 
+      desc: "서로의 상처를 치유하며 사랑하는 청춘들의 이야기입니다.",
+      img: "https://i.postimg.cc/7YZ88wBg/geuhae.jpg"
+    },
+    { 
+      title: "소년 심판", 
+      genre: "범죄", 
+      desc: "소년법에 따른 재판과 성장 과정을 그린 범죄 드라마입니다.",
+      img: "https://i.postimg.cc/RZ2jHfMr/sonyeon.jpg"
+    },
+    { 
+      title: "빈센조", 
+      genre: "범죄", 
+      desc: "이탈리아 마피아 변호사의 법정 복수극입니다.",
+      img: "https://i.postimg.cc/02B4TmKj/binsen.jpg"
+    },
+    { 
+      title: "스위트홈", 
+      genre: "스릴러", 
+      desc: "아파트에서 벌어지는 괴물과의 생존 싸움을 다룬 스릴러입니다.",
+      img: "https://i.postimg.cc/KzfqJgy1/seuwiteu.jpg"
+    },
+    { 
+      title: "일타 스캔들", 
+      genre: "로맨스", 
+      desc: "일타강사의 로맨스를 그린 흥미진진한 드라마입니다.",
+      img: "https://i.postimg.cc/0QkZM2Kt/ilta.jpg"
+    }
+  ];
+
+  const genres = [...new Set(dramas.map(d => d.genre))];
+
+  const genreMenu = document.getElementById('genre-menu');
+  const dramaList = document.getElementById('drama-list');
+  const dramaDetail = document.getElementById('drama-detail');
+
+  // 장르 버튼 생성
+  genres.forEach(genre => {
+    const btn = document.createElement('button');
+    btn.textContent = genre;
+    btn.onclick = () => {
+      document.querySelectorAll('#genre-menu button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      showDramaList(genre);
+      dramaDetail.innerHTML = `<h2>드라마 제목</h2><p>장르를 선택하고 드라마를 클릭하면 상세 내용이 여기에 표시됩니다.</p>`;
+    };
+    genreMenu.appendChild(btn);
+  });
+
+  // 첫 번째 장르 활성화
+  genreMenu.firstChild.classList.add('active');
+
+  function showDramaList(genre) {
+    dramaList.innerHTML = '';
+    const filtered = dramas.filter(d => d.genre === genre);
+    filtered.forEach(d => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.tabIndex = 0;
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-pressed', 'false');
+      card.textContent = d.title;
+
+      card.onclick = () => showDramaDetail(d);
+      card.onkeydown = (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          showDramaDetail(d);
+        }
+      };
+      dramaList.appendChild(card);
+    });
+  }
+
+  // ✅ 이미지 포함 상세 정보 표시
+  function showDramaDetail(drama) {
+    dramaDetail.innerHTML = `
+      <h2>${drama.title}</h2>
+      ${drama.img ? `<img src="${drama.img}" alt="${drama.title}" style="width:100%; border-radius:8px; margin-bottom:15px;">` : ""}
+      <p>${drama.desc}</p>
+    `;
+  }
+
+  // 초기 로딩 시 첫 장르 드라마 보여주기
+  showDramaList(genres[0]);
+</script>
+    
+  </body>
+  
+</html>

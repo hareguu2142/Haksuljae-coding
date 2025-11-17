@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>CodePen - A Pen by 박서진</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💧 피부 타입별 맞춤 보습 가이드 | [브랜드 이름]</title>
+    
+    <!-- Google Fonts - '고운 돋움' 폰트 추가 (더 가볍고 부드러운 글꼴) -->
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+    <style>
+        /* 기본 CSS 스타일 */
+        body {
+            /* 폰트 변경: '고운 돋움'을 기본으로 사용 */
+            font-family: 'Gowun Dodum', 'Malgun Gothic', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8f5e9; /* 연한 초록색 배경 (#e8f5e9) */
+            color: #333;
+            line-height: 1.6; /* 원래대로 유지 */
+            scroll-behavior: smooth; 
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* 헤더 스타일 */
+        header {
+            background-color: #4CAF50; /* 진한 초록색 */
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em; /* 원래대로 유지 */
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2em; /* 원래대로 유지 */
+            opacity: 0.9;
+        }
+        
+        /* 네비게이션 버튼 스타일 */
+        .skin-type-nav {
+            background-color: #f7fff7;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid #a5d6a7;
+            position: sticky; 
+            top: 0;
+            z-index: 1000;
+        }
+
+        .skin-type-nav a {
+            display: inline-block;
+            background-color: #ffffff;
+            color: #4CAF50;
+            padding: 10px 25px;
+            margin: 0 10px;
+            text-decoration: none;
+            border: 2px solid #4CAF50;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            /* font-size: 1.1em; // 원래대로 돌아가기 위해 삭제 */
+        }
+
+        .skin-type-nav a:hover {
+            background-color: #4CAF50;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* 추천 섹션 스타일 */
+        .recommendation-section {
+            padding: 60px 0;
+            background-color: #fff;
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+        
+        /* 개별 피부 타입 섹션 (앵커 대상) */
+        .skin-type-group {
+            padding: 40px 0;
+            margin-bottom: 40px;
+            border-top: 1px solid #eee;
+        }
+
+        .skin-type-group h2 {
+            color: #2e8b57;
+            font-size: 2em; /* 원래대로 유지 */
+            margin-bottom: 40px;
+            position: relative;
+            padding-top: 20px; 
+        }
+        
+        /* 앵커 위치 보정 (네비게이션 높이만큼) */
+        .skin-type-group h2::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: -100px; 
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* 카드 레이아웃 스타일 */
+        .product-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background-color: #f7fff7;
+            border: 1px solid #d4e7d5;
+            border-radius: 8px;
+            padding: 25px;
+            width: 30%; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            min-width: 280px; 
+            text-align: left;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h4 { /* 제품 이름 */
+            color: #388e3c;
+            font-size: 1.3em; /* 원래대로 유지 */
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .card p {
+            font-size: 0.95em; /* 원래대로 유지 */
+            color: #666;
+            min-height: 50px; 
+        }
+
+        /* 하이퍼링크 스타일 */
+        .product-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: white;
+            background-color: #4CAF50;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .product-link:hover {
+            background-color: #388e3c;
+        }
+
+        /* 푸터 스타일 */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        /* 미디어 쿼리 (반응형 디자인) */
+        @media (max-width: 900px) {
+            .card {
+                width: 45%; 
+            }
+        }
+        @media (max-width: 600px) {
+            .card {
+                width: 100%; 
+            }
+            .skin-type-nav a {
+                margin: 5px;
+                padding: 8px 15px;
+                /* font-size: 0.9em; // 원래대로 돌아가기 위해 삭제 */
+            }
+        }
+
+        /* [브랜드 이름]의 보습 철학 섹션 폰트 크기 원복 */
+        .story-section .container h3 {
+             font-size: 2em !important;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>여러분의 피부를 지켜드립니다!</h1>
+            <p>여러분의 피부에 꼭 맞는 토너와 수분 크림을 찾아보세요.</p>
+        </div>
+    </header>
+    
+    <!-- 피부 타입 네비게이션 (클릭 시 이동) -->
+    <nav class="skin-type-nav">
+        <a href="#dry-skin">건성 피부 추천</a>
+        <a href="#oily-skin">지성 피부 추천</a>
+        <a href="#combination-skin">복합성 피부 추천</a>
+        <a href="#sensitive-skin">민감성 피부 추천</a>
+    </nav>
+
+    <div class="container">
+        
+        <section class="recommendation-section">
+            
+            <!-- 1. 건성 피부 추천 그룹 (앵커 id="dry-skin") -->
+            <div class="skin-type-group" id="dry-skin">
+                <h2>✅ 건성 피부를 위한 추천 제품</h2>
+                <p>심한 건조함과 당김을 해결해 줄 보습, 영양 제품입니다.</p>
+                <div class="product-cards">
+                    <!-- 건성 제품 1 -->
+                    <div class="card">
+                     <img src="https://i.postimg.cc/W1LjcMgy/tonimoli.jpg" 
+     alt="[토니모리] 원더 세라마이드 모찌 토너" 
+     style="width: 100%; display: block; margin: 0 auto 15px; border-radius: 5px;">
+
+
+                        <h4>[토니모리] 원더 세라마이드 모찌 토너</h4>
+                        <p>판테놀, 히알루론산 첨가로 수분 충전해주는 제품</p>
+                        <a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000224086&t_page=%ED%86%B5%ED%95%A9%EA%B2%80%EC%83%89%EA%B2%B0%EA%B3%BC%ED%8E%98%EC%9D%B4%EC%A7%80&t_click=%EA%B2%80%EC%83%89%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_search_name=%ED%86%A0%EB%8B%88%EB%AA%A8%EB%A6%AC&t_number=3&dispCatNo=1000001000100130001&trackingCd=Result_3" class="product-link">자세히 보기 및 구매</a>
+                    </div>
+                    <!-- 건성 제품 2 -->
+                    <div class="card">
+                        <img src="https://i.postimg.cc/SQn3DJ37/baiodeoma.jpg"
+     alt="[바이오더마] 시카비오 포마드 크림"
+     style="width: 107%; display: block; margin: 0 auto 15px; border-radius: 5px;">
+
+
+                        <h4>[바이오더마] 시카비오 포마드 크림</h4>
+                        <p>손상된 피부를 회복시킬 수 있는 제품</p>
+                        <a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000232138&t_page=%ED%86%B5%ED%95%A9%EA%B2%80%EC%83%89%EA%B2%B0%EA%B3%BC%ED%8E%98%EC%9D%B4%EC%A7%80&t_click=%EA%B2%80%EC%83%89%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_search_name=%EB%B0%94%EC%9D%B4%EC%98%A4%EB%8D%94%20%ED%81%AC%EB%A6%BC&t_number=1&dispCatNo=1000001000100150001,1000001000800130001&trackingCd=Result_1" class="product-link">자세히 보기 및 구매</a>
+                    </div>
+                    <!-- 건성 제품 3 (추가) -->
+                    <div class="card">
+                        <img src="https://i.postimg.cc/43MbdN5r/dalba.jpg" 
+     alt="[달바] 더블 세럼 앤 크림" 
+     style="width: 87%; display: block; margin: 0 auto 15px; border-radius: 5px;">
+
+
+                        <h4>[달바] 더블 세럼 앤 크림 </h4>
+                        <p>저녁에 바르고 자면 화잘먹 가능 제품</p>
+                        <a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000173212&t_page=%ED%86%B5%ED%95%A9%EA%B2%80%EC%83%89%EA%B2%B0%EA%B3%BC%ED%8E%98%EC%9D%B4%EC%A7%80&t_click=%EA%B2%80%EC%83%89%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_search_name=%EB%8B%AC%EB%B0%94%20%EB%8D%94%EB%B8%94&t_number=3&dispCatNo=1000001000100150001&trackingCd=Result_3" class="product-link">자세히 보기 및 구매</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. 지성 피부 추천 그룹 (앵커 id="oily-skin") -->
+            <div class="skin-type-group" id="oily-skin">
+                <h2>🌿 지성 피부를 위한 추천 제품</h2>
+                <p>수분감은 많고 유분감과 모공을 줄여주는 제품입니다.</p>
+                <div class="product-cards">
+                    <!-- 지성 제품 1 -->
+                    <div class="card">
+                       <img src="https://i.postimg.cc/1RYk0pzW/tolideun-jeobunja-hiallulonsan-toneo.jpg" 
+     alt="[토리든] 다이브인 저분자 히알루론산 토너"
+     style="width: 87%; display: block; margin: 0 auto 15px; border-radius: 5px;">
+
+
+                        <h4>[토리든] 다이브인 저분자 히알루론산 토너 </h4>
+                        <p>끈적거리지 않는 물 제형과 수분과 유분을 잡아주는 제품</p>
+                        <a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000180474&t_page=%ED%86%B5%ED%95%A9%EA%B2%80%EC%83%89%EA%B2%B0%EA%B3%BC%ED%8E%98%EC%9D%B4%EC%A7%80&t_click=%EA%B2%80%EC%83%89%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_search_name=%ED%86%A0%EB%A6%AC%EB%93%A0&t_number=5&dispCatNo=1000001000100130001&trackingCd=Result_5" class="product-link">자세히 보기 및 구매</a>
+                    </div>
+                    <!-- 지성 제품 2 -->
+                    <div class="card">
+                      <img src="https://i.postimg.cc/rmqD9BQ7/odeuloi.jpg" 
+     alt="[오드로이] 모공수축크림 로프디 모공면적"
+     style="width: 105%; display: block; margin: 0 auto 15px; border-radius: 5px;">
+
+
+                        <h4>[오드로이] 모공수축크림 로프디 모공면적</h4>
+                        <p>과도한 피지를 조절하고 모공을 케어하는 제품</p>
+                        <a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000230799&t_page=%ED%86%B5%ED%95%A9%EA%B2%80%EC%83%89%EA%B2%B0%EA%B3%BC%ED%8E%98%EC%9D%B4%EC%A7%80&t_click=%EA%B2%80%EC%83%89%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_search_name=%EC%98%A4%EB%93%9C%EB%A1%9C%EC%9D%B4&t_number=1&dispCatNo=1000001000100150001&trackingCd=Result_1" class="product-link">자세히 보기 및 구매</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 3. 복합성 피부 추천 그룹 (앵커 id="combination-skin") -->
+            <div class="skin-type-group" id="combination-skin">
+                <h2>🌗 복합성 피부를 위한 추천 제품</h2>
+                <p>U존은 건조하고 T존은 유분기가 도는 복합적인 피부를 위한 맞춤 제품입니다.</p>
+                <div class="product-cards">
+                    <!-- 복합성 제품 1 -->
+                    <div class="card">
+                         <img src="https://i.postimg.cc/hjM18bbz/abibeu.jpg" 
+       alt="[아비브] 제품 이미지"
+       style="width: 90%; display: block; margin: 0 auto 15px; border-radius: 5px;">
+                        <h4>[아비브]  어성초 카밍 토너 스킨부스터 </h4>
+                        <p>열감과 여드름 진정이 필요한 소비자를 위한 제품</p>
+                        <a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000155253&t_page=%ED%86%B5%ED%95%A9%EA%B2%80%EC%83%89%EA%B2%B0%EA%B3%BC%ED%8E%98%EC%9D%B4%EC%A7%80&t_click=%EA%B2%80%EC%83%89%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_search_name=%EC%95%84%EB%B9%84%EB%B8%8C%20%ED%86%A0%EB%84%88&t_number=1&dispCatNo=1000001000100130001&trackingCd=Result_1" class="product-link">자세히 보기 및 구매</a>
+                    </div>
+                    <!-- 복합성 제품 2 -->
+                    <div class="card">
+                        <img src="https://i.postimg.cc/pTnF0wj4/chaaenbag.jpg" 
+       alt="[차앤박] 제품 이미지"
+       style="width: 110%; display: block; margin: 0 auto 15px; border-radius: 5px;">
+                        <h4>[차앤박] 더마앤서 배리어 리셋 크림</h4>
+                        <p>속건조 잡아주는 크림 중에 가볍고 산뜻한 텍스처인 제품</p>
+                        <a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000233745&t_page=%ED%86%B5%ED%95%A9%EA%B2%80%EC%83%89%EA%B2%B0%EA%B3%BC%ED%8E%98%EC%9D%B4%EC%A7%80&t_click=%EA%B2%80%EC%83%89%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_search_name=%EC%B0%A8%EC%95%A4%EB%B0%95%20%EB%8D%94%EB%A7%88%20%ED%81%AC%EB%A6%BC&t_number=1&dispCatNo=1000001000100150001&trackingCd=Result_1" class="product-link">자세히 보기 및 구매</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. 민감성 피부 추천 그룹 (앵커 id="sensitive-skin") -->
+            <div class="skin-type-group" id="sensitive-skin">
+                <h2>🕊️ 민감성 피부를 위한 추천 제품</h2>
+                <p>외부 자극에 민감하게 반응하는 피부를 위한 저자극 진정 제품입니다.</p>
+                <div class="product-cards">
+                    <!-- 민감성 제품 1 -->
+                    <div class="card">
+                        <img src="https://i.postimg.cc/PJ5kfjMv/bankoleu.jpg" 
+       alt="[반코르] 제품 이미지"
+       style="width: 100%; display: block; margin: 0 auto 15px; border-radius: 5px;">
+                        <h4>[반코르] 닥터 세라마이드 토너 </h4>
+                        <p>세라마이드 성분으로 피부장벽 튼튼하게 해주는 제품</p>
+                        <a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000213407&t_page=%ED%86%B5%ED%95%A9%EA%B2%80%EC%83%89%EA%B2%B0%EA%B3%BC%ED%8E%98%EC%9D%B4%EC%A7%80&t_click=%EA%B2%80%EC%83%89%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_search_name=%EB%B0%98%EC%BD%9C%2C&t_number=3&dispCatNo=1000001000100130001&trackingCd=Result_3" class="product-link">자세히 보기 및 구매</a>
+                    </div>
+                    <!-- 민감성 제품 2 -->
+                    <div class="card">
+                        <img src="https://i.postimg.cc/3xBVR6k5/eseuteula.jpg" 
+       alt="[에스트라] 제품 이미지"
+       style="width: 100%; display: block; margin: 0 auto 15px; border-radius: 5px;">
+                        <h4>[에스트라] 아토베리어365 크림</h4>
+                        <p>꾸덕한 텍스처지만 피부에 녹아들면서 촉촉하게 감싸주는 제품</p>
+                        <a href="https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000222833&t_page=%ED%86%B5%ED%95%A9%EA%B2%80%EC%83%89%EA%B2%B0%EA%B3%BC%ED%8E%98%EC%9D%B4%EC%A7%80&t_click=%EA%B2%80%EC%83%89%EC%83%81%ED%92%88%EC%83%81%EC%84%B8&t_search_name=%EC%97%90%EC%8A%A4%ED%8A%B8%EB%9D%BC%20%EC%95%84%ED%86%A0%EB%B2%A0%EB%A6%AC%EC%96%B4&t_number=1&dispCatNo=1000001000100150001,1000001000800130001&trackingCd=Result_1" class="product-link">자세히 보기 및 구매</a>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- 브랜드 스토리/추가 정보 섹션 -->
+        <section class="story-section" style="text-align: center; padding: 50px 0;">
+            <div class="container" style="background-color: #f7fff7; padding: 40px; border-radius: 8px;">
+                <h3 style="color: #4CAF50; font-size: 2em; border-bottom: 2px solid #eee; display: inline-block; padding-bottom: 5px; margin-bottom: 30px;">💖 여러분들의 피부를 지켜드릴게요!</h3>
+                <p style="color: #666;">
+                    추천해준 토너와 수분 크림으로 보습력 상승을 기원할게요~~!!
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 제작: 1207 박서진</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+    
+  </body>
+  
+</html>

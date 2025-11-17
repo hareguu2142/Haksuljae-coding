@@ -1,0 +1,48 @@
+/* 커스텀 스타일 및 폰트 적용 */
+:root {
+    --color-dark-bg: #1d1d1f;
+    --color-light-bg: #ffffff;
+    --color-primary-blue: #007aff;
+    --color-text-light: #fff;
+    --color-text-dark: #333;
+    --color-text-secondary: #6e6e73;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--color-text-dark);
+    background-color: #f5f5f7;
+    line-height: 1.6;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* 꽉 찬 화면 섹션 (min-h-screen) */
+.full-screen-section {
+    min-height: 100vh;
+}
+
+/* Hero 섹션 헤드라인 애니메이션을 위한 스타일 */
+.hero-content h1 {
+    font-size: clamp(4rem, 8vw, 10rem); /* 반응형 큰 텍스트 */
+    letter-spacing: -0.05em;
+}
+
+.hero-content h2 {
+    font-size: clamp(1.5rem, 2.5vw, 3rem);
+}
+
+/* CTA 버튼 공통 스타일 */
+.cta-primary, .cta-secondary {
+    transition: all 0.3s ease;
+}
+
+/* 반응형 모바일 조정 */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    .content-section {
+        padding: 80px 5%;
+    }
+}

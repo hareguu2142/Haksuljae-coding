@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python: The Obvious Way</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap">
+    
+    <style>
+        /* 커스텀 스타일 및 폰트 적용 */
+        :root {
+            --color-dark-bg: #1d1d1f;
+            --color-light-bg: #ffffff;
+            --color-primary-blue: #007aff;
+            --color-text-light: #fff;
+            --color-text-dark: #333;
+            --color-text-secondary: #6e6e73;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--color-text-dark);
+            background-color: #f5f5f7;
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* 꽉 찬 화면 섹션 (min-h-screen) */
+        .full-screen-section {
+            min-height: 100vh;
+        }
+
+        /* Hero 섹션 헤드라인 애니메이션을 위한 스타일 */
+        .hero-content h1 {
+            font-size: clamp(4rem, 8vw, 10rem); /* 반응형 큰 텍스트 */
+            letter-spacing: -0.05em;
+        }
+        
+        .hero-content h2 {
+            font-size: clamp(1.5rem, 2.5vw, 3rem);
+        }
+
+        /* CTA 버튼 공통 스타일 */
+        .cta-primary, .cta-secondary {
+            transition: all 0.3s ease;
+        }
+
+        /* 반응형 모바일 조정 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .content-section {
+                padding: 80px 5%;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <a
+        href="../../index.html"
+        class="fixed left-4 top-4 z-50 inline-flex items-center px-3 py-1.5 rounded-full bg-white/90 text-gray-900 text-xs font-semibold shadow-md border border-gray-200 hover:bg-white transition"
+    >
+        ← 전시관으로 돌아가기
+    </a>
+
+    <nav id="navbar" class="fixed top-0 w-full flex justify-between items-center px-5 sm:px-10 py-4 bg-white/90 backdrop-blur-md z-50 shadow-sm border-b border-gray-100">
+        <div class="nav-logo text-2xl font-extrabold text-gray-900">Python</div>
+        <div class="nav-links flex space-x-6">
+            <a href="#simplicity" class="text-gray-700 hover:text-gray-900 font-semibold transition"></a>
+            <a href="#power" class="text-gray-700 hover:text-gray-900 font-semibold transition"></a>
+            </a>
+            <a href="#final-cta" class="text-white bg-blue-600 hover:bg-blue-700 px-4 py-1.5 rounded-full font-semibold transition shadow-md"></a>
+        </div>
+    </nav>
+
+    <header id="hero" class="full-screen-section bg-zinc-900 flex justify-center items-center text-center pt-24">
+        <div class="hero-content text-white max-w-5xl px-6">
+            <h1 class="font-black mb-4">Simplicity.</h1> 
+            <h2 class="font-light mb-12 opacity-90">당신의 코드를, 미래로.</h2>
+            
+            <pre class="code-snippet bg-white/05 text-xl sm:text-2xl inline-block px-2 py-1 rounded-xl font-mono mb-12 shadow-2xl">
+                <code>print("Hello, World!")</code>
+            </pre>
+
+            <a 
+                href="https://www.programiz.com/python-programming/online-compiler/" 
+                target="_blank" 
+                class="cta-primary bg-blue-600 text-white text-lg font-semibold px-10 py-3 rounded-full hover:bg-blue-700 inline-block shadow-lg transition duration-300"
+            >
+                직접 경험하기
+            </a>
+        </div>
+    </header>
+
+    <section id="simplicity" class="content-section bg-white flex justify-center items-center py-20 sm:py-32 px-6">
+        <div class="content-wrapper max-w-4xl text-center">
+            <p class="eyebrow-text text-sm font-semibold text-blue-600 uppercase mb-2">The Obvious Way.</p>
+            <h3 class="feature-headline text-4xl sm:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">명확함. 오직 하나뿐인.</h3>
+            <p class="feature-body text-lg sm:text-2xl max-w-3xl mx-auto mb-16 text-gray-600">복잡한 문법 대신, 직관적인 들여쓰기가 모든 것을 말해줍니다. 코드를 읽는 것이, 마치 글을 읽는 것처럼. 당신의 생각을 그대로 옮기는 언어.</p>
+            
+            <div class="visual-placeholder w-full h-80 rounded-xl shadow-inner border border-gray-200 flex justify-center items-center overflow-hidden">
+                <img src="https://i.postimg.cc/fbs8sbH4/blob.png" alt="파이썬 코드 예시 화면" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <section id="power" class="content-section bg-zinc-900 flex justify-center items-center py-20 sm:py-32 px-6">
+        <div class="content-wrapper max-w-4xl text-center text-white">
+            <p class="eyebrow-text text-sm font-semibold text-teal-400 uppercase mb-2">Beyond Code.</p>
+            <h3 class="feature-headline text-4xl sm:text-6xl font-extrabold mb-6 leading-tight">당신의 아이디어가 닿는 모든 곳.</h3>
+            <p class="feature-body text-lg sm:text-2xl max-w-3xl mx-auto mb-16 text-gray-400">웹 개발부터 인공지능, 데이터 분석, 그리고 우주까지. 한계를 두지 마십시오. 당신의 꿈을 현실로 만드는 강력한 도구들이 이미 준비되어 있습니다.</p>
+            
+            <div class="visual-placeholder icon-grid bg-zinc-800 w-full h-80 rounded-xl shadow-2xl border border-zinc-700 p-8 grid grid-cols-3 gap-8">
+                <div class="text-center">
+                    <svg class="w-16 h-16 mx-auto mb-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    <p class="text-gray-300">웹 개발</p>
+                </div>
+                <div class="text-center">
+                    <svg class="w-16 h-16 mx-auto mb-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7-8v8m14-8v8"></path></svg>
+                    <p class="text-gray-300">데이터 분석</p>
+                </div>
+                <div class="text-center">
+                    <svg class="w-16 h-16 mx-auto mb-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M3.636 5.636l.707.707m0 7h4m-4-7h4m8 0h4m-4 7h4m-4 7v4m0-4h4"></path></svg>
+                    <p class="text-gray-300">인공지능</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="final-cta" class="full-screen-section bg-white flex justify-center items-center py-32 px-6">
+        <div class="cta-content text-center max-w-4xl">
+            <h1 class="final-headline text-5xl sm:text-7xl font-black text-gray-900 mb-6 leading-tight">This is Python.</h1>
+            <p class="final-message text-xl sm:text-3xl font-light text-gray-600 mb-12">더 적은 코드로, 더 많은 것을 당신이 상상하는 모든 것을 지금 시작하세요.</p>
+            <div class="cta-group flex justify-center space-x-4 flex-wrap">
+                <a 
+                    href="https://www.python.org/downloads/" 
+                    target="_blank"
+                    class="cta-primary bg-gray-900 text-white text-lg font-semibold px-10 py-3 rounded-full hover:bg-black inline-block shadow-lg transition duration-300 my-2"
+                >
+                    지금 바로 다운로드
+                </a>
+                
+                <a 
+                    href="https://www.programiz.com/python-programming/online-compiler/" 
+                    target="_blank" 
+                    class="cta-secondary bg-transparent text-gray-900 text-lg font-semibold px-10 py-3 rounded-full hover:bg-gray-100 inline-block border-2 border-gray-900 transition duration-300 my-2"
+                >
+                    코드를 실행해 보세요
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer" class="py-8 text-center text-sm text-gray-500 border-t border-gray-200 bg-gray-50">
+        <p>&copy; 2025 Python Korea. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

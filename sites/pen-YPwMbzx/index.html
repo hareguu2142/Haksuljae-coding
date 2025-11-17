@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘의 문장, 당신의 감성</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;500;700&family=Nanum+Myeongjo:wght@400;700&family=Jua&family=Dongle:wght@400&family=Gowun+Dodum&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="../../index.html" style="position: fixed; top: 16px; left: 16px; z-index: 9999; padding: 8px 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.9); color: #333; text-decoration: none; font-size: 13px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+        ← 전시관으로 돌아가기
+    </a>
+
+    <div id="captureArea" class="quote-container">
+        <div id="dateInfo" class="date-info"></div> 
+        
+        <h1 id="quoteText" class="quote-text">당신의 마음에 깊이 울릴, 오늘의 문장.</h1>
+        <p id="quoteSource" class="quote-source">— 작가 이름, 도서명</p>
+        
+        <img id="backgroundImage" class="background-image" src="" alt="User Background" style="display: none;">
+    </div>
+
+    <div class="controls">
+        <h3>🎨 스타일 설정</h3>
+        
+        <label for="userImage">배경 이미지 업로드:</label>
+        <input type="file" id="userImage" accept="image/*">
+        
+        <button id="removeImageBtn">❌ 배경 이미지 제거</button> 
+        
+        <label for="fontSelect">폰트 선택:</label>
+        <select id="fontSelect">
+            <option value="'Noto Serif KR', serif">Noto Serif KR (기본)</option>
+            <option value="'Nanum Myeongjo', serif">나눔명조 (단정)</option>
+            <option value="'Jua', sans-serif">주아체 (손글씨)</option>
+            <option value="'Gowun Dodum', sans-serif">고운돋움 (깔끔)</option>
+            <option value="'Dongle', sans-serif">동글체 (귀여움)</option>
+        </select>
+        
+        <label for="bgColor">배경색 변경 (이미지 없을 때):</label>
+        <input type="color" id="bgColor" value="#f0f0f0">
+
+        <label for="fontColor">글자색 변경:</label>
+        <input type="color" id="fontColor" value="#333333">
+
+        <button id="saveImageBtn">🖼️ 이미지로 저장</button>
+        <button id="nextQuoteBtn">➡️ 다음 문장 (테스트용)</button>
+
+        <hr style="width: 100%; border-top: 1px solid #ddd;">
+        <h3 style="margin-top: 5px;">✍️ 응모 문장 추천</h3>
+        
+        <div id="voteQuoteDisplay" style="padding: 10px; border: 1px dashed #ccc; border-radius: 5px; background: #fafafa;">
+            <p id="voteText" style="margin: 0; font-style: italic;">"응모된 문장을 보고 있습니다."</p>
+            <p id="voteSource" style="margin: 5px 0 0 0; font-size: 0.8em; opacity: 0.7;">— (추천수: <span id="voteCount">0</span>)</p>
+        </div>
+        
+        <button id="recommendBtn">👍 이 문장을 추천합니다!</button>
+        <button id="nextVoteBtn" style="background-color: #4a90e2; color: white;">다른 응모 문장 보기</button>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h4>내일의 문장을 응모해주세요!</h4>
+            <textarea id="submissionText" placeholder="문장과 출처를 함께 적어주세요. (예: 사람은 책을 만들고 책은 사람을 만든다. - 이이)" rows="4"></textarea>
+            <button id="submitQuoteBtn">응모하기</button>
+        </div>
+    </div>
+
+    <button id="openModalBtn" class="submit-btn">📝 문장 응모하기</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

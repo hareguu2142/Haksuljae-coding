@@ -335,6 +335,7 @@
   genres.forEach(genre => {
     const btn = document.createElement('button');
     btn.textContent = genre;
+    btn.title = '전시관으로 돌아가기';
     btn.onclick = () => {
       document.querySelectorAll('#genre-menu button').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
